@@ -3,13 +3,18 @@ var nameSpan = document.querySelector('span')
 var formEl = document.querySelector('form')
 var clear = document.querySelector('#clear')
 var textarea = document.querySelector('textarea')
+var notesarea = document.querySelector('notes-area')
 
 // Retrieve name and note content from cookies and localstorage
 // Then apply them to elements on the page
 // YOUR CODE HERE
 
+localStorage.setItem("NAMEHEADER", "Jim")
+//document.getElementById("nameid").innerHTML = nameHeader;
+document.getElementById("nameid").innerHTML = localStorage.getItem("NAMEHEADER");
 
-
+localStorage.setItem("TEXT-AREA", "Please add something here")
+document.getElementById("notes-area").innerHTML = localStorage.getItem("TEXT-AREA");
 
 formEl.onsubmit = function(e) {
   // prevents form submission
@@ -31,7 +36,10 @@ clear.onclick = function() {
   // Clear localstorage's content
   // YOUR CODE HERE
 
-
+  localStorage.setItem("NAMEHEADER", "Your Name");
+  localStorage.setItem("TEXT-AREA", "")
+  document.getElementById("nameid").innerHTML = localStorage.getItem("NAMEHEADER");
+  document.getElementById("notes-area").innerHTML = localStorage.getItem("TEXT-AREA");
 
 
 
