@@ -1,67 +1,57 @@
 // acquire references to page elements
-var nameSpan = document.querySelector('span')
-var formEl = document.querySelector('form')
-var clear = document.querySelector('#clear')
-var textarea = document.querySelector('textarea')
-//var notesarea = document.querySelector('notes-area')
+
+  var nameSpan = document.querySelector('span')
+  var formEl = document.querySelector('form')
+  var clear = document.querySelector('#clear')
+  var textarea = document.querySelector('textarea')
 
 // Retrieve name and note content from cookies and localstorage
 // Then apply them to elements on the page
 // YOUR CODE HERE
 
-  document.cookie = inputform
-  var inputform = nameSpan.textContent
+  var nameInput = nameSpan.textContent
+  //document.cookie = ('name=nameInput')
+  document.cookie = nameInput
+  
+  
+  var formInput = localStorage.getItem('notes')
 
   formEl.onsubmit = function(e) {
 
 // prevents form submission
-e.preventDefault()
+  e.preventDefault()
 // save name element's content to cookies
 // save textarea's content to localstorage
 // YOUR CODE HERE
 
-  document.cookie = 'name=span'
+  document.cookie = nameSpan.textContent
   
-  localStorage.setItem('form', 'textarea')
+  formInput = textarea.value
+  localStorage.setItem('notes', formInput)
 
 
-
-
-  
-  /*localStorage.setItem("NAMEHEADER", "Jim")
-  document.getElementById("nameid").innerHTML = localStorage.getItem("NAMEHEADER");
-
-  localStorage.setItem("TEXT-AREA", "Please add something here")
-  document.getElementById("notes-area").innerHTML = localStorage.getItem("TEXT-AREA");*/
-
-
-
-
-
-  // triggers thumbs up animation
+// triggers thumbs up animation
   this.elements.save.classList.add('emoji')
 }
 
-clear.onclick = function() {
-  // Clear textarea's value
-  // Clear localstorage's content
-  // YOUR CODE HERE
+  clear.onclick = function() {
 
-  localStorage.setItem("NAMEHEADER", "Your Name");
-  localStorage.setItem("TEXT-AREA", "")
-  document.getElementById("nameid").innerHTML = localStorage.getItem("NAMEHEADER");
-  document.getElementById("notes-area").innerHTML = localStorage.getItem("TEXT-AREA");
+// Clear textarea's value
+// Clear localstorage's content
+// YOUR CODE HERE
 
+  textarea.value = ""
+  localStorage.setItem('notes',"")
 
 
-  // triggers thumbs up animation
+// triggers thumbs up animation
   this.classList.add('emoji')
 }
 
 // this code allows repeated thumbs up animations
-function endThumbsUp() {
-  this.classList.remove('emoji')
-}
+  function endThumbsUp() {
+    this.classList.remove('emoji')
+  }
 
-formEl.elements.save.onanimationend = endThumbsUp
-clear.onanimationend = endThumbsUp
+  formEl.elements.save.onanimationend = endThumbsUp
+  clear.onanimationend = endThumbsUp
