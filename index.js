@@ -11,7 +11,6 @@
 
     document.cookie = "return_visitor=yes";
 
-
     var inputNote = localStorage.getItem('notes')
       if (inputNote) {
         textarea.textContent = inputNote
@@ -51,19 +50,18 @@
   // Clear localstorage's content
   // YOUR CODE HERE
 
-
-      localStorage.removeItem('notes');
-      textarea.value = "";
-      window.localStorage.clear();
+    localStorage.removeItem('notes');
+    textarea.value = "";
+    window.localStorage.clear();
 
   // triggers thumbs up animation
-      this.classList.add('emoji')
-      }
+    this.classList.add('emoji')
+    }
 
   // this code allows repeated thumbs up animations
-      function endThumbsUp() {
-        this.classList.remove('emoji')
-      }
+    function endThumbsUp() {
+      this.classList.remove('emoji')
+    }
 
-      formEl.elements.save.onanimationend = endThumbsUp
-      clear.onanimationend = endThumbsUp
+    formEl.elements.save.onanimationend = endThumbsUp
+    clear.onanimationend = endThumbsUp
