@@ -1,57 +1,69 @@
-// acquire references to page elements
+  // acquire references to page elements
 
-  var nameSpan = document.querySelector('span')
-  var formEl = document.querySelector('form')
-  var clear = document.querySelector('#clear')
-  var textarea = document.querySelector('textarea')
+    var nameSpan = document.querySelector('span')
+    var formEl = document.querySelector('form')
+    var clear = document.querySelector('#clear')
+    var textarea = document.querySelector('textarea')
 
-// Retrieve name and note content from cookies and localstorage
-// Then apply them to elements on the page
-// YOUR CODE HERE
+  // Retrieve name and note content from cookies and localstorage
+  // Then apply them to elements on the page
+  // YOUR CODE HERE
 
-  var nameInput = nameSpan.textContent
-  //document.cookie = ('name=nameInput')
-  document.cookie = nameInput
-  
-  
-  var formInput = localStorage.getItem('notes')
-
-  formEl.onsubmit = function(e) {
-
-// prevents form submission
-  e.preventDefault()
-// save name element's content to cookies
-// save textarea's content to localstorage
-// YOUR CODE HERE
-
-  document.cookie = nameSpan.textContent
-  
-  formInput = textarea.value
-  localStorage.setItem('notes', formInput)
+    document.cookie = "return_visitor=yes";
 
 
-// triggers thumbs up animation
-  this.elements.save.classList.add('emoji')
-}
+    var inputNote = localStorage.getItem('notes')
+      if (inputNote) {
+        textarea.textContent = inputNote
+        textarea.value = inputNote
+      } else {
+        textarea.textContent = ''
+      }
 
-  clear.onclick = function() {
+    function  inputnameCookie() {
+      document.cookie = "yourname=yes";
+    };
 
-// Clear textarea's value
-// Clear localstorage's content
-// YOUR CODE HERE
+    formEl.addEventListener('click', inputnameCookie);
+    if (document.cookie.split(';').filter((item) => item.includes('yourname=yes')).length) {
+      nameSpan.innerHTML = "James"; //can't figure how to make the "name" be personalized vs. storing a name
+    }
 
-  textarea.value = ""
-  localStorage.setItem('notes',"")
+    formEl.onsubmit = function(e) {
+
+  // prevents form submission
+    e.preventDefault()
+
+  // save name element's content to cookies
+  // save textarea's content to localstorage
+  // YOUR CODE HERE
+
+    inputNote = textarea.value
+    localStorage.setItem('notes', inputNote)
+    textarea.textContent = inputNote
+
+  // triggers thumbs up animation
+    this.elements.save.classList.add('emoji')
+    }
+
+    clear.onclick = function() {
+  // Clear textarea's value
+  // Clear localstorage's content
+  // YOUR CODE HERE
 
 
-// triggers thumbs up animation
-  this.classList.add('emoji')
-}
+      localStorage.removeItem('notes');
+      textarea.value = "";
+      window.localStorage.clear();
 
-// this code allows repeated thumbs up animations
-  function endThumbsUp() {
-    this.classList.remove('emoji')
-  }
+  // triggers thumbs up animation
+      this.classList.add('emoji')
+      }
 
-  formEl.elements.save.onanimationend = endThumbsUp
-  clear.onanimationend = endThumbsUp
+  // this code allows repeated thumbs up animations
+      function endThumbsUp() {
+        this.classList.remove('emoji')
+      }
+
+      formEl.elements.save.onanimationend = endThumbsUp
+      clear.onanimationend = endThumbsUp
